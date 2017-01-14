@@ -27,6 +27,38 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        <strong>Users current of this company:</strong>
+
+                        @if(count($company->users) > 0)
+
+                            @foreach ($company->users as $user)
+                                @if(!isset($flag))
+
+                                    {{ $user->name }}
+
+                                @else
+
+                                    {{ ", " . $user->name }}
+
+                                @endif
+
+                                @php($flag = TRUE)
+
+                            @endforeach
+
+                        @else
+
+                            {{ "No users to show!" }}
+
+                        @endif
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>

@@ -149,13 +149,17 @@ class UserController extends Controller
 
         $user->groups()->detach();
 
-        foreach ($request->groups as $group):
+        if (count($request->groups) > 0):
 
-            $group = Group::find($group);
+            foreach ($request->groups as $group):
 
-            $user->groups()->save($group);
+                $group = Group::find($group);
 
-        endforeach;
+                $user->groups()->save($group);
+
+            endforeach;
+
+        endif;
 
         return redirect()->route('user.index')
             ->with('success', 'User updated successfully!');

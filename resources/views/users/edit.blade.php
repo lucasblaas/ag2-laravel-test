@@ -112,7 +112,11 @@
                 <div class="col-md-6">
 
                     <div class="form-group">
+                        @if($user->active == 1)
                         {{ Form::checkbox('active', '1', true) }}
+                        @else
+                        {{ Form::checkbox('active', '1', false) }}
+                        @endif
                         {{ Form::label('active', 'Active') }}
                     </div>
 
