@@ -41,6 +41,12 @@
                 top: 18px;
             }
 
+            .top-left {
+                position: absolute;
+                left: 10px;
+                top: 18px;
+            }
+
             .content {
                 text-align: center;
             }
@@ -66,6 +72,15 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+            @if (Route::has('login'))
+                <div class="top-left links">
+                    @if (Auth::check())
+                        <a href="{{ url('/company') }}">Companies</a>
+                        <a href="{{ url('/group') }}">Groups</a>
+                        <a href="{{ url('/user') }}">Users</a>
+                    @endif
+                </div>
+            @endif
             @if (Route::has('login'))
                 <div class="top-right links">
                     @if (Auth::check())

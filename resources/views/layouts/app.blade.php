@@ -35,15 +35,19 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                    <a class="navbar-brand" href="{{ url('/home') }}">
+                        Test for back-end job
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        @if (Auth::check())
+                            <li><a href="{{ url('/company') }}">Companies</a></li>
+                            <li><a href="{{ url('/group') }}">Groups</a></li>
+                            <li><a href="{{ url('/user') }}">Users</a></li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
