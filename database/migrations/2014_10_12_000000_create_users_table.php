@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
 
             $table->integer('company_id')->unsigned()->nullable();
 
-            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('set null');;
         });
     }
 

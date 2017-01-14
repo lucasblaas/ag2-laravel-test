@@ -40,7 +40,7 @@ class GroupController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -51,28 +51,32 @@ class GroupController extends Controller
 
         $group = Group::create($request->all());
 
-        foreach($request->users as $user):
+        if (count($request->users) > 0):
 
-            $user = User::find($user);
+            foreach ($request->users as $user):
 
-            $group->users()->save($user);
+                $user = User::find($user);
 
-        endforeach;
+                $group->users()->save($user);
 
-        return redirect()->route('group.index')->with('message','Group created successfully!');
+            endforeach;
+
+        endif;
+
+        return redirect()->route('group.index')->with('message', 'Group created successfully!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $group = Group::find($id);
 
-        if(!$group){
+        if (!$group) {
             abort(404);
         }
 
@@ -82,14 +86,14 @@ class GroupController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $group = Group::find($id);
 
-        if(!$group){
+        if (!$group) {
             abort(404);
         }
 
@@ -101,8 +105,8 @@ class GroupController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -116,22 +120,26 @@ class GroupController extends Controller
 
         $group->users()->detach();
 
-        foreach($request->users as $user):
+        if (count($request->users) > 0):
 
-            $user = User::find($user);
+            foreach ($request->users as $user):
 
-            $group->users()->save($user);
+                $user = User::find($user);
 
-        endforeach;
+                $group->users()->save($user);
+
+            endforeach;
+
+        endif;
 
         return redirect()->route('group.index')
-            ->with('success','Group updated successfully!');
+            ->with('success', 'Group updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -140,6 +148,6 @@ class GroupController extends Controller
         Group::find($id)->delete();
 
         return redirect()->route('group.index')
-            ->with('success','Group deleted successfully');
+            ->with('success', 'Group deleted successfully');
     }
 }

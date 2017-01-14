@@ -33,20 +33,26 @@
                     <div class="form-group">
                         <strong>Users current in this group:</strong>
 
-                        @foreach ($group->users as $user)
-                            @if(!isset($flag))
+                        @if(count($group->users) > 0)
 
-                            {{ $user->name }}
+                            @foreach ($group->users as $user)
+                                @if(!isset($flag))
 
-                            @else
+                                    {{ $user->name }}
 
-                                {{ ", " . $user->name }}
+                                @else
 
-                            @endif
+                                    {{ ", " . $user->name }}
 
-                            @php($flag = TRUE)
+                                @endif
 
-                        @endforeach
+                                @php($flag = TRUE)
+
+                            @endforeach
+
+                        @else
+                            {{ "Without users!" }}
+                        @endif
                     </div>
                 </div>
             </div>
