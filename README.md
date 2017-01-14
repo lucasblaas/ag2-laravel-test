@@ -1,4 +1,4 @@
-URL: http://tranquil-basin-24461.herokuapp.com/[http://tranquil-basin-24461.herokuapp.com/]
+Deploy: http://tranquil-basin-24461.herokuapp.com/
 
 Teste Laravel
 ===================
