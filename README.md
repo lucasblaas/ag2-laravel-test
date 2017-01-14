@@ -1,4 +1,5 @@
 Deploy: http://tranquil-basin-24461.herokuapp.com/
+Padrão de Login e Senha: admin@teste.com - 123456
 
 Teste Laravel
 ===================
